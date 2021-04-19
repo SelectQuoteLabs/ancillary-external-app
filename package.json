@@ -1,0 +1,50 @@
+{
+  "name": "shuttle-tydirium",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "node server.js",
+    "dev:local": "docker compose -f docker-compose.local.yml up --build -V",
+    "format": "prettier --write './{pages, src}/**/*.js'",
+    "lint": "eslint './{pages,src}/**/*.js'",
+    "reset:docker": "docker container prune && docker volume prune",
+    "start": "next start",
+    "upgrade": "npm-check --update"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "@material-ui/pickers": "^4.0.0-alpha.12",
+    "@selectquotelabs/sqform": "^4.5.3",
+    "@selectquotelabs/sqhooks": "^1.4.0",
+    "next": "10.1.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-query": "^3.13.7",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-plugin-hooks": "^0.2.0",
+    "eslint-plugin-react": "^7.23.2",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "npm-check": "^5.9.2",
+    "prettier": "^2.2.1",
+    "prop-types": "^15.7.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "./{pages,src}/**/*.js": [
+      "prettier --write",
+      "eslint './{pages,src}/**/*.js' --fix",
+      "git add"
+    ]
+  }
+}
