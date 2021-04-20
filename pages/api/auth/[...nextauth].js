@@ -59,8 +59,8 @@ export default NextAuth({
   // pages is not specified for that route.
   // https://next-auth.js.org/configuration/pages
   pages: {
-    signIn: '/auth/signin', // Displays signin buttons
-    signOut: '/auth/signout', // Displays form with sign out button
+    // signIn: '/auth/signin', // Displays signin buttons
+    // signOut: '/auth/signout', // Displays form with sign out button
     // error: '/auth/error', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // Used for check email page
     // newUser: null // If set, new users will be directed here on first sign in
@@ -94,8 +94,8 @@ export default NextAuth({
     },
     // eslint-disable-next-line
     async jwt(token, user, account, profile, isNewUser) {
-      if (profile) {
-        token.profile = profile;
+      if (account) {
+        token.account = account;
       }
       return token;
     },

@@ -5,7 +5,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import { StylesProvider } from '@material-ui/styles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { Provider } from 'next-auth/client';
+import { Provider as NextAuthProvider } from 'next-auth/client';
 import { SQAdminLayout, muiTheme } from 'scplus-shared-components';
 import Header from '@/components/Header';
 import Body from '@/components/Body';
@@ -24,10 +24,10 @@ const queryClient = new QueryClient({
 
 function App({ Component, pageProps }) {
   return (
-    <Provider session={pageProps.session}>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
-        <StylesProvider injectFirst>
+    <StylesProvider>
+      <NextAuthProvider session={pageProps.session}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
           <LocalizationProvider dateAdapter={MomentAdapter} locale={'en'}>
             <MuiThemeProvider theme={muiTheme}>
               <SQAdminLayout HeaderComponent={Header}>
@@ -37,9 +37,9 @@ function App({ Component, pageProps }) {
               </SQAdminLayout>
             </MuiThemeProvider>
           </LocalizationProvider>
-        </StylesProvider>
-      </QueryClientProvider>
-    </Provider>
+        </QueryClientProvider>
+      </NextAuthProvider>
+    </StylesProvider>
   );
 }
 

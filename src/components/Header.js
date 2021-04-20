@@ -1,7 +1,6 @@
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { useRouter } from 'next/router';
 import { makeStyles } from '@material-ui/core';
-import { useSession } from 'next-auth/client';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import { IconButtonMenu, SystemHeader } from 'scplus-shared-components';
 
 const useStyles = makeStyles(() => {
@@ -17,7 +16,6 @@ const useStyles = makeStyles(() => {
 // 💡 Change the backgroundColor and Title
 export default function Header() {
   const [session] = useSession();
-  const router = useRouter();
   const classes = useStyles();
 
   const AccountIcon = () => {
@@ -30,9 +28,9 @@ export default function Header() {
       isDisabled: false,
       onClick: () => {
         if (session) {
-          router.push('/auth/signout');
+          signOut();
         } else {
-          router.push('/auth/signin');
+          signIn();
         }
       },
     },
