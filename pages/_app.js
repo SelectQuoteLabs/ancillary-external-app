@@ -7,6 +7,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Provider as NextAuthProvider } from 'next-auth/client';
 import { SQAdminLayout, muiTheme } from 'scplus-shared-components';
+import { useRouter } from 'next/router';
 import Header from '@/components/Header';
 import Body from '@/components/Body';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -23,6 +24,7 @@ const queryClient = new QueryClient({
 });
 
 function App({ Component, pageProps }) {
+  const router = useRouter();
   return (
     <StylesProvider>
       <NextAuthProvider session={pageProps.session}>
@@ -30,11 +32,15 @@ function App({ Component, pageProps }) {
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
           <LocalizationProvider dateAdapter={MomentAdapter} locale={'en'}>
             <MuiThemeProvider theme={muiTheme}>
-              <SQAdminLayout HeaderComponent={Header}>
-                <Body>
-                  <Component {...pageProps} />
-                </Body>
-              </SQAdminLayout>
+              {router.pathname === '/signin' ? (
+                <Component {...pageProps} />
+              ) : (
+                <SQAdminLayout HeaderComponent={Header}>
+                  <Body>
+                    <Component {...pageProps} />
+                  </Body>
+                </SQAdminLayout>
+              )}
             </MuiThemeProvider>
           </LocalizationProvider>
         </QueryClientProvider>

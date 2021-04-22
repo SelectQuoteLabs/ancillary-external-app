@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "node server.js",
+    "dev": "next dev",
     "dev:local": "docker compose -f docker-compose.local.yml up --build -V",
     "format": "prettier --write './{pages, src}/**/*.js'",
     "lint": "eslint './{pages,src}/**/*.js'",
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "eslint": "^7.24.0",
-    "eslint-plugin-hooks": "^0.2.0",
     "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "npm-check": "^5.9.2",
