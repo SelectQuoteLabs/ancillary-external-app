@@ -44,42 +44,12 @@ Install local tooling such as `husky` and `lint-staged`:
 npm install
 ```
 
-#### Local HTTPS
-
-From the root of the project create a directory named `certificates` and navigate to the directory:
-
-```bash
-mkdir certificates && cd certificates
-```
-
-Generate SSL certificates for localhost to run on https:
-
-```bash
-openssl req -x509 -out localhost.crt -keyout localhost.key \
-  -days 365 \
-  -newkey rsa:2048 -nodes -sha256 \
-  -subj '/CN=localhost' -extensions EXT -config <( \
-   printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
-```
-
-> 💡 Remove the newlines in favor of spaces when pasting to your terminal
-
-Add your certificates to KeyChain
-
-- Double-click on your certificate (the .crt file) to add it to your KeyChain
-- In the KeyChain window, under the Default Keychains section select “login” or which ever keychain you added this to and then double click on your new certificate in the main content area. It should be named localhost
-- You can now set it to be trusted by expanding "Trust"
-- Change each dropdown to "Always Trust"
-- After closing the window you'll be prompted for your admin password
-
-> Note: These instructions are for Mac OSX. For Windows, here's a link but know this is not exact step-by-step instructions https://windowsreport.com/create-self-signed-certificate/
-
 #### Local OAuth
 
 Create a `.env.local` in the projects root directory and add the following:
 
 ```
-NEXTAUTH_URL='https://localhost:3000'
+NEXTAUTH_URL='http://localhost:3000'
 ```
 
 ### Running the Dev Server
@@ -90,7 +60,7 @@ First, run the development server:
 npm run dev:local
 ```
 
-Open [https://localhost:3000](https://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Authentication
 
