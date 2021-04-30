@@ -6,7 +6,7 @@ import { StylesProvider } from '@material-ui/styles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Provider as NextAuthProvider } from 'next-auth/client';
-import { SQAdminLayout, muiTheme } from 'scplus-shared-components';
+import { SQAdminLayout, muiTheme, SnackbarProvider } from 'scplus-shared-components';
 import { useRouter } from 'next/router';
 import Header from '@/components/Header';
 import Body from '@/components/Body';
@@ -30,6 +30,7 @@ function App({ Component, pageProps }) {
       <NextAuthProvider session={pageProps.session}>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+          <SnackbarProvider>
           <LocalizationProvider dateAdapter={MomentAdapter} locale={'en'}>
             <MuiThemeProvider theme={muiTheme}>
               {router.pathname === '/signin' ? (
@@ -42,7 +43,8 @@ function App({ Component, pageProps }) {
                 </SQAdminLayout>
               )}
             </MuiThemeProvider>
-          </LocalizationProvider>
+            </LocalizationProvider>
+            </SnackbarProvider>
         </QueryClientProvider>
       </NextAuthProvider>
     </StylesProvider>
