@@ -1,5 +1,11 @@
 ## Getting Started
 
+This application was generated from a [create-next-app example](https://github.com/vercel/next.js/tree/canary/examples)
+
+```bash
+npx create-next-app . -e https://github.com/SelectQuoteLabs/ancillary-external-app
+```
+
 This template repo should be used for external ancillary applications.
 
 An external ancillary app is any application that is exposed to the public internet and is NOT a CRM or Quote Tool.
