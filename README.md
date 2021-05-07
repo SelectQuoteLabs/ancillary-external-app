@@ -34,11 +34,11 @@ This app will be deployed and hosted on [Vercel](https://vercel.com)
 
 1. Login to the Vercel online dashboard and create a new project.
 
-2. At the top of the page, switch from your personal account to the SelectQuote team
+2. At the top of the page, switch from your personal account to the team account
 
 3. Click the "New Project" button
 
-4. Under "Import Git Repository" select the "SelectQuote" bitbucket option if you're using Bitbucket. Otherwise, choose "Select other Provider" and choose GitHub.
+4. Under "Import Git Repository" select the Team bitbucket option if you're using Bitbucket. Otherwise, choose "Select other Provider" and choose GitHub.
 
 5. Click the "Import" button of your repository
 
@@ -60,7 +60,7 @@ vercel
 
 Enter your email used for Vercel. You'll receive an email asking you to verify your account.
 
-Switch to the SQ Team in the CLI:
+Switch to the Team account in the CLI:
 
 ```bash
 vercel switch
@@ -72,7 +72,7 @@ Link the codebase to the Vercel Project
 vercel link
 ```
 
-> 💡 Ensure the "scope" is "SelectQuote"
+> 💡 Ensure the "scope" is "SelectQuote" or your team
 
 ### Local Tooling
 
